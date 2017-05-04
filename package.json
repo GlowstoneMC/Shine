@@ -1,0 +1,17 @@
+{
+  "name": "shine",
+  "license": "MIT",
+  "description": "Glowstone's plugin database and download center",
+  "version": "0.0.1",
+  "homepage": "https://www.glowstone.net",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GlowstoneMC/Shine"
+  },
+  "main": "app.js",
+  "dependencies": {
+    "express": "3.4.8",
+    "express-session": "^1.15.2",
+    "swig": "^1.4.2"
+  }
+}
