@@ -3,9 +3,7 @@ function User(name) {
 }
 
 User.prototype.getName = function() {
-    return name;
+    return this.name;
 }
 
 module.exports = User;
-
-
