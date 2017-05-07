@@ -1,60 +1,44 @@
-var express = require("express");
-var web = express();
-var swig = require('swig');
-var session = require("express-session");
+const http = require("http");
+const express = require("express");
+const path = require("path");
 
-web.configure(() => {
-  web.engine("html", swig.renderFile);
-  web.set("view engine", "html");
-  web.set("views", 'views');
-});
+const favicon = require("serve-favicon");
+const logger = require("morgan");
+const methodOverride = require("method-override");
+const session = require("express-session");
+const bodyParser = require("body-parser");
+// const multer = require("multer");
+const errorHandler = require("errorhandler");
 
-var sessions = {};
+const app = express();
+const Router = require("./routes/router.js");
+const hbs = require("hbs");
 
-var sess = {
-  secret: "muhbigsecret",
-  cookie: {},
-  saveUninitialized: true,
-  resave: false
-}
+const sessionSettings = {
+    secret: "muhbigsecret",
+    cookie: {},
+    saveUninitialized: true,
+    resave: false
+};
 
-web.use(session(sess));
+// register all partials from directory.
+hbs.registerPartials("./views/partials");
 
-web.get('/', (req, res) => {
-  var encodedId = new Buffer(req.session.id).toString("base64");
-  if (!sessions[encodedId]) {
-    // new session
-    sessions[encodedId] = {};
-  }
-  var s = sessions[encodedId];
-  res.render("index", {
-    "brand": {
-      "name": "Shine"
-    },
-    "libraries": {
-      "jquery": "3.2.1",
-      "bootstrap": "3.3.7"
-    },
-    "session": s
-  });
-  console.log("sessions: " + JSON.stringify(sessions));
-});
+app.set("views", "./views");
+app.set("view engine", "hbs");
+// app.use(favicon(path.join(__dirname, "/public/favicon.ico")));
+app.use(logger("dev"));
+app.use(methodOverride());
+app.use(session(sessionSettings));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(multer({ dest: './uploads' }));
+app.use(express.static("./public"));
 
-web.get('/login/:username', (req, res) => {
-  var encodedId = new Buffer(req.session.id).toString("base64");
-  if (!sessions[encodedId]) {
-    // new session
-    sessions[encodedId] = {};
-  }
-  var s = sessions[encodedId];
-  if (!s.user) {
-    sessions[encodedId].user = {
-      name: req.params.username
-    }
-  }
-  res.redirect("/");
-});
+new Router(app);
 
-web.listen(80, function() {
+app.use(errorHandler());
+
+http.createServer(app).listen(80, () => {
   console.log("Server started.");
-})
+});
