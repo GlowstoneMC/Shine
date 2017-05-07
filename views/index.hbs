@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Shine</title>
+    {{> bootstrapcss }}
+  </head>
+
+  <body>
+    {{> menu }}
+    <div class="container-fluid">
+      <h1>Shine Index</h1>
+      <p>Welcome to <strong>Shine</strong>, Glowstone's in-house download center and plugin repository.</p>
+      <p>
+        {{#if user}}
+          You are currently logged in as <a href="#">{{user.name}}</a>.
+        {{else}}
+          You are not currently logged in. <a href="#">Sign in</a> or <a href="#">create an account</a> to submit plugins.
+        {{/if}}
+      </p>
+    </div>
+
+    {{> jquery }}{{> bootstrapjs }}
+  </body>
+</html>
