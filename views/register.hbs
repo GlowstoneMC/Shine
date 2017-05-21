@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Shine</title>
+        {{> bootstrapcss }}
+    </head>
+
+    <body>
+        {{> menu }}
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">Register</div>
+
+                <div class="panel-body">
+                    <form method="post">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                </span>
+
+                                <input type="text" name="username" class="form-control" placeholder="Username">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                    </span>
+
+                                    <input type="email" name="email" class="form-control" placeholder="Email address">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" placeholder="Confirm email address">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                    </span>
+
+                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <input type="password" class="form-control" placeholder="Confirm password">
+                            </div>
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> I agree to xyz.
+                            </label>
+                        </div>
+
+                        <input type="submit" class="btn btn-default" value="Sign in">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {{> jquery }}{{> bootstrapjs }}
+    </body>
+</html>
