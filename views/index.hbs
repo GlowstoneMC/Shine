@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Shine</title>
-        {{> bootstrapcss }}
-    </head>
+{{#> layouts/base title="Home" }}
 
-    <body>
-        {{> menu }}
+    {{#*inline "body"}}
         <div class="container-fluid">
             <h1>Shine Index</h1>
             <p>Welcome to <strong>Shine</strong>, Glowstone's in-house download center and plugin repository.</p>
@@ -20,7 +13,6 @@
                 {{/if}}
             </p>
         </div>
+    {{/inline}}
 
-        {{> jquery }}{{> bootstrapjs }}
-    </body>
-</html>
+{{/layouts/base}}
