@@ -38,7 +38,6 @@ function Authentication(database) {
       }
 
       // valid auth
-      req.session.user = user.info;
       return done(null, user);
     });
   }));
