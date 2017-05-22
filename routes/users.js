@@ -3,7 +3,8 @@ module.exports.login = function (req, res) {
   res.render("login", {
     "alerts": {
       "error": req.flash("error")
-    }
+    },
+    "user": req.user
   });
 };
 

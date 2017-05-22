@@ -16,6 +16,10 @@ function Authentication(database) {
 
   // strategies for login and register
   passport.use("login", new LocalStrategy({passReqToCallback: true}, function (req, username, password, done) {
+    if (req.session.user) {
+      console.log("attempted login when already signed in");
+      return done(null, false, req.flash("error", "Sign out before signing in!"));
+    }
     var user = database.getByUsername(username);
 
     if (!user) {
