@@ -1,4 +1,12 @@
 "use strict";
+// config
+const configManager = require("./config-manager.js");
+if (!configManager.exists()) {
+  console.error("Could not find configuration file 'config.json'. Exitting...");
+  process.exit(1);
+}
+const config = configManager.load();
+
 const http = require("http");
 const express = require("express");
 const path = require("path");
@@ -46,6 +54,7 @@ registerRoutes(app, passport);
 
 app.use(errorHandler());
 
-http.createServer(app).listen(80, () => {
-  console.log("Server started.");
+const port = configManager.get(config, "port");
+http.createServer(app).listen(port, () => {
+  console.log("Server started on port " + port + ".");
 });
