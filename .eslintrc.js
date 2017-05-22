@@ -1,14 +1,14 @@
 module.exports = {
   "extends": "standard",
   "plugins": [
-      "standard",
-      "promise"
+    "standard",
+    "promise"
   ],
   "rules": {
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "space-before-function-paren": ["error", {
-      "anonymous": "ignore",
+      "anonymous": "always",
       "named": "ignore",
       "asyncArrow": "ignore"
     }]
