@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Shine</title>
-        {{> bootstrapcss }}
-    </head>
+{{#> layouts/base title="Home" }}
 
-    <body>
-        {{> menu }}
+    {{#*inline "body"}}
         <div class="container">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
@@ -67,7 +60,6 @@
                 </div>
             </div>
         </div>
+    {{/inline}}
 
-        {{> jquery }}{{> bootstrapjs }}
-    </body>
-</html>
+{{/layouts/base}}
