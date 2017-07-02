@@ -2,7 +2,7 @@
 // config
 const configManager = require("./config-manager.js");
 if (!configManager.exists()) {
-  console.error("Could not find configuration file 'config.json'. Exitting...");
+  console.error("Could not find configuration file 'config.json'. Aborting...");
   process.exit(1);
 }
 const config = configManager.load();
@@ -10,7 +10,7 @@ const config = configManager.load();
 const http = require("http");
 const express = require("express");
 const path = require("path");
-const flash = require('connect-flash-plus');
+const flash = require("connect-flash-plus");
 
 // const favicon = require("serve-favicon");
 const logger = require("morgan");
@@ -23,8 +23,7 @@ const errorHandler = require("errorhandler");
 const app = express();
 const registerRoutes = require("./routes/routes.js");
 const hbs = require("hbs");
-const Database = require("./database.js");
-const passport = require("./authentication.js")(new Database());
+const passport = require("passport");
 
 const sessionSettings = {
   secret: "muhbigsecret",
