@@ -1,10 +1,11 @@
-const User = require("./user.js");
-const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
+const router = require("express").Router();
+const User = require("./user.js");
+
 const saltRounds = 10;
 
-function Authentication(database) {
+function configurePassport(passport, database) {
 // configure session persistence
   passport.serializeUser(function (user, done) {
     done(null, user.id);
@@ -16,10 +17,11 @@ function Authentication(database) {
 
   // strategies for login and register
   passport.use("login", new LocalStrategy({passReqToCallback: true}, function (req, username, password, done) {
-    if (req.session.user) {
-      console.log("attempted login when already signed in");
-      return done(null, false, req.flash("error", "Sign out before signing in!"));
+    if (req.user) {
+      // already signed in
+      return done(null, req.user);
     }
+
     var user = database.getByUsername(username);
 
     if (!user) {
@@ -42,28 +44,54 @@ function Authentication(database) {
     });
   }));
 
-  passport.use("register", new LocalStrategy({passReqToCallback: true}, function (req, username, password, done) {
+  router.post("/login",
+    passport.authenticate("login", {
+      successRedirect: "/",
+      failureRedirect: "/login",
+      badRequestMessage: "Invalid username or password!",
+      failureFlash: true
+    })
+  );
+
+  router.post("/register", function (req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var email = req.body.email;
+
+    if (req.user) {
+      // already signed in
+      res.redirect("/");
+      return;
+    }
+
+    // check if inputs are undefined
+    if (!username || !password || !email) {
+      res.redirect("/register");
+      return;
+    }
+
     // check if username already exists
     if (database.getByUsername(username)) {
       console.log("username taken:" + username);
-      return done(null);
+      res.redirect("/register");
+      return;
     }
 
     bcrypt.hash(password, saltRounds, function (err, hash) {
-      var user = new User(database.getNextId(), username, hash, req.params["email"]);
+      var user = new User(database.getNextId(), username, hash, email);
 
       if (err) {
-        return done(err);
+        throw err;
       }
 
       console.log("registered");
       // registered
       database.add(user);
-      return done(null, user);
+      res.redirect("/login");
     });
-  }));
+  });
 
-  return passport;
+  return router;
 }
 
-module.exports = Authentication;
+module.exports = configurePassport;
