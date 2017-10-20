@@ -1,69 +1,58 @@
 {{#> layouts/base title="Home" }}
 
     {{#*inline "body"}}
-        <div class="container">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+        <div class="section">
+            <div class="columns">
+                <div class="container column is-half">
+                    <h1 class="title">Register</h1>
 
-                <div class="panel-body">
-                    <form method="post">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                </span>
-
-                                <input type="text" name="username" class="form-control" placeholder="Username">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                    </span>
-
-                                    <input type="email" name="email" class="form-control" placeholder="Email address">
+                    <div class="box">
+                        <form method="post">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Username">
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <input type="email" class="form-control" placeholder="Confirm email address">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                                    </span>
-
-                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input" type="email" placeholder="Email Address">
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <input type="password" class="form-control" placeholder="Confirm password">
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" placeholder="Password">
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="control">
+                                            <input class="input" type="text" placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> I agree to xyz.
-                            </label>
-                        </div>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                    </label>
+                                </div>
+                            </div>
 
-                        <input type="submit" class="btn btn-default" value="Sign in">
-                    </form>
+                            <div class="field">
+                                <div class="control">
+                                    <button type="submit" class="button is-primary">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     {{/inline}}
-
-    {{#*inline "scripts"}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-    {{/inline}}
-
 {{/layouts/base}}

@@ -1,17 +1,19 @@
 {{#> layouts/base title="Home" }}
 
     {{#*inline "body"}}
-        <div class="container-fluid">
-            <h1>Shine Index</h1>
-            <p>Welcome to <strong>Shine</strong>, Glowstone's in-house download center and plugin repository.</p>
-            <p>
-                {{#if user}}
-                    You are currently logged in as <a href="#">{{user.username}}</a>.
-                {{else}}
-                    You are not currently logged in. <a href="login">Sign in</a> or <a href="register">create an account</a> to
-                    submit plugins.
-                {{/if}}
-            </p>
+        <div class="section">
+            <div class="container">
+                <h1 class="title">Shine Index</h1>
+                <p>Welcome to <strong>Shine</strong>, Glowstone's in-house download center and plugin repository.</p>
+                <p>
+                    {{#if user}}
+                        You are currently logged in as <a href="#">{{user.username}}</a>.
+                    {{else}}
+                        You are not currently logged in. <a href="/login">Sign in</a> or <a href="/register">create an account</a> to
+                        submit plugins.
+                    {{/if}}
+                </p>
+            </div>
         </div>
     {{/inline}}
 

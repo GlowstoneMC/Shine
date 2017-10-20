@@ -1,0 +1,4 @@
+/* hide scrollbar on full sized pages */
+html {
+    overflow: auto;
+}
